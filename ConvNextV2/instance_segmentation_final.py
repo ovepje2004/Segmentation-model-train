@@ -23,7 +23,7 @@ class Config:
         self.dataloader_num_workers = 4
         self.batch_size = 4
         self.image_size = 512
-        self.base_lr = 0.0001  # 학습률을 조금 높임
+        self.base_lr = 0.0001 
         self.num_epochs = 50
         self.eval_period = 1
         self.num_classes = 13
@@ -232,7 +232,6 @@ class DiceLossWithEmptyPenalty(nn.Module):
         intersection = (inputs * targets).sum(dim=1)
         dice = (2. * intersection + self.smooth) / (inputs.sum(dim=1) + targets.sum(dim=1) + self.smooth)
         
-        # 빈 공간 패널티 추가
         empty_space_penalty = ((1 - inputs) * targets).sum(dim=1)
         empty_space_penalty = self.empty_penalty_weight * (empty_space_penalty / targets.sum(dim=1))
 
